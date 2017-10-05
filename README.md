@@ -30,3 +30,16 @@ following configuration:
 * Use "-Dswarm.http.port=9000 -Dniord-proxy.server=http://localhost:8080" as VM Options.
 * Ensure that *niord-gh-proxy* is used as the working directory.
 
+## Creating a Docker Release
+
+First, build the *niord-gh-proxy* war:
+
+    mvn clean install
+    
+Next, build the docker image:
+
+    cd ../docker/
+    ./build-niord-gh-proxy.sh build ../target/niord-gh-proxy-swarm.jar
+     
+    # If successful, and if you have previously used "docker login", push to dockerhub:
+    ./build-niord-gh-proxy.sh push
