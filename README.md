@@ -28,5 +28,5 @@ For a full range of settings, see the *Settings* class.
 Alternatively, you can run the *NiordProxyMain* class from withing e.g. IntelliJ with the
 following configuration:
 * Use "-Dswarm.http.port=9000 -Dniord-proxy.server=http://localhost:8080" as VM Options.
-* Ensure that *niord-gh/niord-gh-proxy* is used as the working directory.
+* Ensure that *niord-gh-proxy* is used as the working directory.
 
