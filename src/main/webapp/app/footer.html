@@ -1,0 +1,17 @@
+<footer class="footer container-fluid">
+    <div class="row">
+        <div class="col-sm-4 footer-left">
+            <a href="http://www.ghanamaritime.org/" translate>FOOTER_COPYRIGHT</a>
+        </div>
+        <div class="col-sm-4 footer-center">
+            <a href="http://www.ghanamaritime.org/" target="_blank">
+                <img src="/img/logo-gray.png" height="34"/>
+            </a>
+        </div>
+        <div ng-controller="FooterCtrl" class="col-sm-4 footer-right">
+            <a href ng-click="disclaimerDlg()" translate>FOOTER_DISCLAIMER</a>
+            &nbsp;&bull;&nbsp;
+            <a href ng-click="cookiesDlg()" translate>FOOTER_COOKIES</a>
+        </div>
+    </div>
+</footer>

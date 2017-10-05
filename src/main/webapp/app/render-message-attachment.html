@@ -1,0 +1,17 @@
+
+<div class="attachment">
+
+    <div>
+        <img ng-if="sourceType == 'image'"
+             ng-style="sourceStyle" ng-src="{{attachment.path}}" />
+
+        <video ng-if="sourceType == 'video'" controls=""
+               ng-style="sourceStyle">
+            <source ng-src="{{attachment.path}}" type="{{attachment.type}}" />
+        </video>
+    </div>
+
+    <div class="attachment-label">
+        <i>{{attachment.descs[0].caption}}</i>
+    </div>
+</div>

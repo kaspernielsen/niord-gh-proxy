@@ -1,0 +1,37 @@
+
+<div>
+    <!-- Tooltip -->
+    <div id="info"></div>
+
+    <!-- Layer switcher -->
+    <div ng-if="layerSwitcherLayers.length > 0" class="map-layer-switcher">
+        <ul>
+            <li ng-repeat="l in layerSwitcherLayers">
+                <input type="checkbox" ng-model="l.visible" ng-change="updateVisibility(l)">&nbsp;<span ng-bind-html="l.name"></span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- General messages -->
+    <div ng-if="showNoPosMessages && noPosMessages.length > 0" class="message-map-general-messages">
+        <div>
+            <h4>
+                <span translate>NO_POS_MSGS</span>
+                <span class="pull-right message-map-general-messages-link">
+                    <a href ng-click="toggleMinimizeNoPosMessages()">
+                        <span ng-if="minimizeNoPosMessages" translate>MAXIMIZE</span>
+                        <span ng-if="!minimizeNoPosMessages" translate>MINIMIZE</span>
+                    </a>
+                </span>
+            </h4>
+        </div>
+        <div ng-repeat="msg in noPosMessages" class="compact-message-list" ng-if="!minimizeNoPosMessages"
+             message-details-link="msg.id" messages="messages">
+            <message-id-badge msg="msg" show-status="true"></message-id-badge>
+            <strong ng-if="msg.descs">{{msg.descs[0].title}}</strong>
+        </div>
+    </div>
+
+    <div ng-transclude></div>
+
+</div>

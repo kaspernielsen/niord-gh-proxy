@@ -1,0 +1,14 @@
+
+<div ng-include="'/app/messages-filter.html'"></div>
+
+<div class="message-list-map">
+    <message-map class="message-map"
+                 messages="messages"
+                 show-no-pos-messages="true"
+                 fit-extent="true"
+                 root-area="params.rootArea"
+                 max-zoom="10"
+                 ng-init="init()">
+    </message-map>
+</div>
+

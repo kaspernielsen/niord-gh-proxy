@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ROBOTS" content="NONE">
+    <meta name="GOOGLEBOT" content="NOARCHIVE">
+
+    <link rel="icon" href="/img/niord-proxy_152.png" sizes="152x152" type="image/png" />
+    <link rel="apple-touch-icon" href="/img/niord-proxy_152.png" sizes="152x152" type="image/png" />
+
+    <link rel="stylesheet" href="/css/app.css">
+
+</head>
+<body>
+
+    <script type="text/javascript">
+
+        /**
+         * Returns the IE version. Tested for IE11 and earlier.
+         */
+        function isIE () {
+            var match = navigator.userAgent.match(/(?:MSIE |Trident\/.*; rv:)(\d+)/);
+            return match ? parseInt(match[1]) : undefined;
+        }
+
+        if (isIE() < 9) {
+            document.location.href = "/details.html";
+        } else {
+            document.location.href = "/index.html";
+        }
+    </script>
+
+</body>
+</html>

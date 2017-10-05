@@ -1,0 +1,71 @@
+<div>
+
+    <div class="modal-body print" style="padding: 0">
+
+        <div class="message-details-dialog-banner">
+            <span ng-if="msg"
+                  ng-bind-html="'MENU_' + msg.mainType | translate"></span>
+            &nbsp;
+            <span class="pull-right" ng-click="$dismiss('aborted')">
+                <span class="glyphicon glyphicon-remove" style="color: gray; cursor: pointer"></span>
+            </span>
+        </div>
+
+        <div style="padding: 15px 15px 0 15px">
+
+            <div ng-if="warning">
+                <div class="message-details-dialog-error">
+                    <p>
+                        <span class="glyphicon glyphicon-warning-sign"></span>
+                        <span ng-bind-html="warning"></span>
+                    </p>
+                </div>
+            </div>
+
+            <div ng-if="msg">
+
+                <div ng-if="hasGeometry && showMap" class="message-details-map">
+                    <message-map class="message-map"
+                                 message="msg" fit-extent="true" show-no-pos-messages="false" max-zoom="12">
+                    </message-map>
+                </div>
+
+                <div render-message-details msg="msg" format="details" show-details="selectMessage(messageId)">
+                </div>
+
+            </div>
+
+            <div class="row" style="margin-top: 24px">
+
+                <div class="form-group col-xs-8" style="text-align: left">
+
+                    <div class="btn-group" ng-if="pushedMessageIds.length == 1 && showNavigation">
+                        <button class="btn btn-primary btn-sm" ng-click="selectPrev()" ng-disabled="index < 1">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        </button>
+                        <button class="btn btn-primary btn-sm" ng-click="selectNext()"  ng-disabled="index >= messages.length - 1">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </button>
+                    </div>
+
+                    <div class="btn-group" ng-if="pushedMessageIds.length > 1">
+                        <button class="btn btn-primary btn-sm" ng-click="back()">
+                            <span class="glyphicon glyphicon-step-backward"></span> back
+                        </button>
+                    </div>
+
+                    <button class="btn btn-primary btn-sm" ng-if="msg" ng-click="pdf()">
+                        <span class="glyphicon glyphicon-print"></span>
+                    </button>
+
+                </div>
+
+
+                <div class="form-group col-xs-4" style="text-align: right">
+                    <button class="btn btn-primary btn-sm" ng-click="$dismiss('aborted')">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

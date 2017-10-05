@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html data-framework="angularjs" ng-app="niord.proxy.app">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ROBOTS" content="NONE">
+    <meta name="GOOGLEBOT" content="NOARCHIVE">
+
+    <title>Navigational Warnings and Notices to Mariners</title>
+    <link rel="icon" href="img/niord-proxy_152.png" sizes="152x152" type="image/png" />
+    <link rel="apple-touch-icon" href="img/niord-proxy_152.png" sizes="152x152" type="image/png" />
+
+    <!-- Third-party CSS dependencies -->
+    <link rel="stylesheet" type="text/css" href="/ext/openlayers-4.0.1/ol.css">
+
+    <!-- Niord Proxy CSS dependencies -->
+    <link rel="stylesheet" type="text/css" href="css/message.css">
+    <link rel="stylesheet" type="text/css" href="css/app.css">
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    </script>
+</head>
+<body class="teaser-body" ng-controller="AppCtrl">
+
+<div ng-controller="MessageCtrl" ng-init="teaser = true">
+    <a href="/index.html#/messages/map" target="_blank">
+        <message-map class="teaser-map" messages="messages" show-no-pos-messages="false" fit-extent="true" max-zoom="10" ng-init="init()"
+                     read-only="true" osm="ArcGIS">
+            <div class="teaser-banner" translate>
+                TEASER_TEXT
+            </div>
+        </message-map>
+    </a>
+</div>
+
+<!-- Third-party JavaScript dependencies -->
+<script type="text/javascript" src="/ext/jquery-2.1.4/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/ext/angularjs-1.4.8/angular.min.js"></script>
+<script type="text/javascript" src="/ext/angularjs-1.4.8/angular-sanitize.min.js"></script>
+<script type="text/javascript" src="/ext/angular-translate-2.11.0/angular-translate.min.js"></script>
+<script type="text/javascript" src="/ext/angular-bootstrap-0.14.3/ui-bootstrap-tpls-0.14.3.min.js"></script>
+<script type="text/javascript" src="/ext/angular-ui-router-0.2.18/angular-ui-router.min.js"></script>
+<script type="text/javascript" src="/ext/openlayers-4.0.1/ol.js"></script>
+
+<!-- Niord Proxy App JavaScript dependencies -->
+<script type="text/javascript" src="/app/teaser-app.js"></script>
+<script type="text/javascript" src="/app/app-ctrl.js"></script>
+<script type="text/javascript" src="/app/app-service.js"></script>
+<script type="text/javascript" src="/app/app-directives.js"></script>
+<script type="text/javascript" src="/app/app-texts.js"></script>
+
+<!-- Will be overridden by configuration servlet -->
+<script type="text/javascript" src="/conf/site-config.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+
+<div ng-include="'/app/messages-filter.html'"></div>
+
+<div class="message-details-list" ng-init="init()">
+    <table style="width: 100%">
+        <tr ng-repeat-start="msg in messages"  ng-if="msg.areaHeading">
+            <td colspan="2" style="border: none">
+                <h4 class="message-area-heading" render-message-area="msg.areaHeading" lineage="false"></h4>
+            </td>
+        </tr>
+        <tr ng-repeat-end class="message-table-item">
+            <td valign="middle" align="left" nowrap>
+                <message-id-badge msg="msg" show-status="true"></message-id-badge>
+            </td>
+            <td valign="middle" width="*">
+                <span ng-if="msg.descs" message-details-link="msg.id" messages="messages">
+                    <span class="message-title">{{msg.descs[0].title}}</span>
+                    <span ng-if="msg.descs[0].lang != language">
+                        <img ng-src="/img/flags/{{msg.descs[0].lang}}.png" style="height: 12px; opacity: 0.5;"/>
+                    </span>
+                </span>
+            </td>
+        </tr>
+    </table>
+</div>

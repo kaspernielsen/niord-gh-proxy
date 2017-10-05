@@ -1,0 +1,113 @@
+
+<div style="width: 100%;">
+
+    <!-- Attachments to be displayed above message -->
+    <div class="row" ng-repeat="att in attachmentsAbove" ng-if="!compact">
+        <div class="col-sm-12">
+            <message-attachment attachment="att"></message-attachment>
+        </div>
+    </div>
+
+
+    <!-- Title line -->
+    <div ng-if="msg.originalInformation">&#9733;</div>
+    <div>
+        <message-id-badge msg="msg" show-status="true"></message-id-badge>
+    </div>
+    <div ng-if="msg.descs" message-details-link="msg.id" messages="messages" disabled="format == 'details'">
+        <span class="message-title">{{msg.descs[0].title}}</span>
+        <span ng-if="format == 'list'" class="glyphicon glyphicon-new-window message-details-link"></span>
+        <span ng-if="msg.descs[0].lang != language">
+            <img ng-src="/img/flags/{{msg.descs[0].lang}}.png" style="height: 12px; opacity: 0.5;"/>
+        </span>
+    </div>
+
+
+    <table class="message-details-item-fields">
+
+        <!-- Reference lines -->
+        <tr ng-if="msg.references && msg.references.length > 0">
+            <th translate>FIELD_REFERENCES</th>
+            <td>
+                <div ng-repeat="ref in msg.references">
+                    <a href ng-click="referenceClicked(ref.messageId)">{{ref.messageId}}</a><render-reference-type ref="ref"></render-reference-type>
+                </div>
+            </td>
+        </tr>
+
+
+        <!-- Details line -->
+        <tr ng-if="msg.parts" ng-repeat="part in msg.parts">
+            <th>
+                <span ng-if="$index == 0 || msg.parts[$index].type != msg.parts[$index - 1].type"
+                      translate="{{'PART_TYPE_' + part.type}}">
+                </span>
+            </th>
+            <td class="message-description">
+                <div ng-if="part.descs && part.descs.length > 0">
+                    <div ng-if="part.descs[0].subject && !part.hideSubject">
+                        <strong>{{part.descs[0].subject}}</strong>
+                        <span ng-if="part.descs[0].lang != language">
+                            <img ng-src="/img/flags/{{part.descs[0].lang}}.png" style="height: 12px; opacity: 0.5;"/>
+                        </span>
+                    </div>
+                    <div ng-if="part.descs[0].details" ng-bind-html="part.descs[0].details | toTrusted"></div>
+                </div>
+            </td>
+        </tr>
+
+
+        <!-- Attachments -->
+        <tr ng-if="msg.attachments">
+            <th translate>FIELD_ATTACHMENTS</th>
+            <td>
+                <div>
+                    <span class="glyphicon glyphicon-paperclip" style="color: darkgray"></span>
+                    <a href ng-if="showAttachments" ng-click="setShowAttachments(false)" class="clickable" translate>HIDE_ATTACHMENTS</a>
+                    <a href ng-if="!showAttachments" ng-click="setShowAttachments(true)" class="clickable" translate>SHOW_ATTACHMENTS</a>
+                </div>
+                <div ng-if="showAttachments">
+                    <div ng-repeat="att in msg.attachments" style="margin-left: 20px">
+                        <span class="glyphicon glyphicon-file"></span>
+                        <a href="{{att.path}}" target="_blank">
+                            {{att.fileName}}
+                        </a>
+                        <span ng-if="att.descs && att.descs.length > 0">
+                            - {{att.descs[0].caption}}
+                        </span>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+
+        <!-- Charts line -->
+        <tr ng-if="msg.charts.length > 0">
+            <th translate>FIELD_CHARTS</th>
+            <td>
+                <span render-charts="msg.charts"></span>
+            </td>
+        </tr>
+
+
+        <!-- Publication line -->
+        <tr ng-if="msg.descs && msg.descs[0].publication">
+            <th translate>FIELD_PUBLICATION</th>
+            <td class="message-publication" ng-bind-html="msg.descs[0].publication | toTrusted"></td>
+        </tr>
+
+        <!-- Source line -->
+        <tr ng-if="(msg.descs && msg.descs[0].source) || msg.publishDateFrom">
+            <td colspan="2" class="text-right">(<render-message-source msg="msg"></render-message-source>)</td>
+        </tr>
+
+    </table>
+
+    <!-- Attachments to be displayed below message -->
+    <div class="row" ng-repeat="att in attachmentsBelow" ng-if="!compact">
+        <div class="col-sm-12">
+            <message-attachment attachment="att"></message-attachment>
+        </div>
+    </div>
+
+</div>

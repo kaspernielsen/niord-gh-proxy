@@ -1,0 +1,59 @@
+
+<div class="filter-bars">
+
+    <!-- Message list filtering -->
+    <div class="row-fluid filter-bar">
+        <div class="input-group col-xs-12 center filter-bar-btns">
+
+            <span class="filter-bar-btn"
+                  ng-class="{ 'filter-bar-btn-selected' : params.mainTypes.NW }"
+                  ng-click="params.mainTypes.NW = !params.mainTypes.NW" translate>
+                MENU_NW
+            </span>
+            <span class="filter-bar-btn"
+                  ng-class="{ 'filter-bar-btn-selected' : params.mainTypes.NM }"
+                  ng-click="params.mainTypes.NM = !params.mainTypes.NM" translate>
+                MENU_NM
+            </span>
+
+            <span class="filter-bar-separator"></span>
+
+            <span class="filter-bar-btn"
+                  ng-class="{ 'filter-bar-btn-selected' : params.activeNow }"
+                  ng-click="params.activeNow = !params.activeNow" translate>
+                ACTIVE_NOW
+            </span>
+
+            <span class="filter-bar-separator"></span>
+
+            <span class="filter-bar-btn"  ng-click="pdf()">
+                <span class="glyphicon glyphicon-print"></span>
+                <span translate>MENU_PRINT</span>
+            </span>
+        </div>
+    </div>
+
+    <div class="row-fluid filter-bar" ng-if="showAreaFilter && areaRoots.length > 0">
+        <div class="input-group col-xs-12 center filter-bar-btns">
+            <span ng-if="areaRoots.length > 1"
+                ng-repeat="rootArea in areaRoots" class="filter-bar-btn"
+                ng-class="{ 'filter-bar-btn-selected' : rootArea.id == params.rootArea.id }"
+                ng-click="updateRootArea(rootArea)"
+                render-message-area="rootArea" lineage="false">
+            </span>
+
+            <span ng-if="areaRoots.length > 1 && params.rootArea && subAreas.length > 0"
+                  class="filter-bar-separator"></span>
+
+            <span ng-if="params.rootArea && subAreas.length > 0"
+                  ng-repeat="area in subAreas" class="filter-bar-btn"
+                  ng-class="{ 'filter-bar-btn-selected' : area.selected}"
+                  ng-click="area.selected = !area.selected"
+                  render-message-area="area" lineage="false">
+            </span>
+        </div>
+    </div>
+
+
+</div>
+

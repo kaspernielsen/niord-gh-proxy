@@ -1,0 +1,94 @@
+
+@page {
+    size: a4 portrait;
+    margin: 1cm 1cm 2cm 1cm;
+    padding:0;
+
+    @bottom-center {
+        content: element(footer);
+        vertical-align: top;
+    }
+}
+
+body{
+    font-size:12px;
+    font-family: Helvetica;
+    margin: 0;
+    padding:0;
+}
+
+table {
+    font-size: 12px;
+    border-spacing: 0;
+    border-collapse: collapse
+}
+
+h4 {
+    font-size: 14px;
+    margin: 8mm 0 4mm 0;
+}
+
+div.footer {
+    margin-top: 0;
+    text-align: center;
+    display: block;
+    position: running(footer);
+    padding-top: 5px;
+    color: darkgray;
+}
+
+#pagenumber:before {
+    content: counter(page);
+}
+
+#pagecount:before {
+    content: counter(pages);
+}
+
+
+.page-break  {
+    clear: left;
+    display:block;
+    page-break-after:always;
+    margin: 0;
+    padding: 0;
+    height: 0;
+}
+
+.message-details-list {
+    font-size: 11px;
+}
+
+
+.message-details-item {
+    padding-bottom: 5mm;
+    margin-bottom: 5mm;
+    border-bottom: 0.2mm solid gray;
+    page-break-inside: avoid;
+}
+
+.separate-attachment-page {
+    text-align: center;
+    clear: left;
+    display:block;
+    page-break-before:always;
+    margin: 5mm;
+    padding: 0;
+}
+
+/** Override message classes **/
+
+table.position-table td.pos-col {
+    padding-left: 1mm;
+    padding-right: 1mm;
+}
+
+table.position-table td.pos-index {
+    min-width: 4mm;
+}
+
+.message-area-heading {
+    color: #A32638;
+    font-size: 20px;
+    margin-top: 30px
+}

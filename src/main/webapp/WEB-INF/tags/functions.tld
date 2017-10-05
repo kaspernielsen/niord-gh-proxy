@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib
+        xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+        version="2.1">
+
+    <display-name>Niord-Proxy JSLT Functions</display-name>
+    <tlib-version>2.0</tlib-version>
+    <short-name>niord-proxy-jstl</short-name>
+    <uri>/WEB-INF/tags/functions</uri>
+
+    <function>
+        <name>areaHeading</name>
+        <function-class>org.niord.proxy.web.TldFunctions</function-class>
+        <function-signature>org.niord.model.message.AreaVo getAreaHeading(org.niord.model.message.MessageVo)</function-signature>
+    </function>
+
+    <function>
+        <name>renderMessageArea</name>
+        <function-class>org.niord.proxy.web.TldFunctions</function-class>
+        <function-signature>java.lang.String renderMessageArea(org.niord.model.message.AreaVo, boolean)</function-signature>
+    </function>
+
+    <function>
+        <name>renderMessageSource</name>
+        <function-class>org.niord.proxy.web.TldFunctions</function-class>
+        <function-signature>java.lang.String renderMessageSource(org.niord.model.message.MessageVo,java.util.Locale,java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>attachments</name>
+        <function-class>org.niord.proxy.web.TldFunctions</function-class>
+        <function-signature>java.util.List getAttachmentsWithDisplayType(org.niord.model.message.MessageVo,java.lang.String)</function-signature>
+    </function>
+
+    <tag>
+        <name>trailingDot</name>
+        <tag-class>org.niord.proxy.web.TrailingDotJspTag</tag-class>
+        <body-content>scriptless</body-content>
+    </tag>
+
+</taglib>
