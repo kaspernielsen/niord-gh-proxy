@@ -694,11 +694,22 @@ angular.module('niord.proxy.app')
 
 
                         // Show Message details dialog when a message is clicked
+                        scope.clickable = true;
                         map.on('click', function(evt) {
+
+                            // The clickable property is used to fix an issue on touch screens
+                            if (!scope.clickable) {
+                                return;
+                            }
+
                             var messages = scope.getMessagesForPixel(map.getEventPixel(evt.originalEvent));
                             if (messages.length >= 1) {
                                 $timeout(function() { info.tooltip('hide'); });
-                                MessageService.detailsDialog(messages[0].id, messages);
+                                scope.clickable = false;
+                                MessageService.detailsDialog(messages[0].id, messages)
+                                    .result.finally(function () {
+                                        scope.clickable = true;
+                                    });
                                 scope.$$phase || scope.$apply();
                             }
                         });
