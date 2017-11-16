@@ -187,6 +187,7 @@ angular.module('niord.proxy.app')
                         controller: "MessageDialogCtrl",
                         templateUrl: "/app/message-details-dialog.html",
                         size: 'lg',
+                        animation: false,
                         resolve: {
                             messageId: function () {
                                 return messageId;
