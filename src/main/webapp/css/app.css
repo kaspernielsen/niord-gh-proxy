@@ -91,17 +91,6 @@ footer {
     }
 }
 
-/** Disable modal dialog animation **/
-
-.modal.fade {
-    opacity: 1;
-}
-.modal.fade .modal-dialog, .modal.in .modal-dialog {
-    -webkit-transform: translate(0, 0);
-    -ms-transform: translate(0, 0);
-    transform: translate(0, 0);
-}
-
 /** Disable button focus **/
 
 .btn:focus,.btn:active {
