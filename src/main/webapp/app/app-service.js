@@ -38,6 +38,10 @@ angular.module('niord.proxy.app')
                     if (lang === undefined && $rootScope.languages && $rootScope.languages.length > 0) {
                         lang = $rootScope.languages[0];
                     }
+                    if (lang !== undefined && $rootScope.languages && $rootScope.languages.length > 0 &&
+                        $.inArray(lang, $rootScope.languages) === -1) {
+                        lang = $rootScope.languages[0];
+                    }
                     if (lang === undefined) {
                         lang = 'en';
 
