@@ -71,7 +71,7 @@ public class Settings {
     private void init() {
         // Initialize settings from system properties
 
-        server = System.getProperty("niord-proxy.server", "https://niord.ghanamaritime.info");
+        server = System.getProperty("niord-proxy.server", "https://niord.ghananautical.info");
         log.info("server: " + server);
 
         // Accept incomplete SSL certificate chains from the server
@@ -83,7 +83,7 @@ public class Settings {
 
         repoRoot = System.getProperty("niord-proxy.repoRootPath");
         if (StringUtils.isBlank(repoRoot)) {
-            repoRoot = System.getProperty("user.home") + "/.niord-proxy/repo";
+            repoRoot = System.getProperty("user.home") + "/.niord-gh-proxy/repo";
         }
         log.info("repoRoot: " + repoRoot);
 
