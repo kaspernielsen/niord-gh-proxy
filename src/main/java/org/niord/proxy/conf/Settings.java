@@ -1,7 +1,13 @@
 package org.niord.proxy.conf;
 
-import org.apache.commons.lang.StringUtils;
-import org.niord.proxy.rest.RootArea;
+import java.security.SecureRandom;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -10,13 +16,9 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
-import java.security.SecureRandom;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.apache.commons.lang.StringUtils;
+import org.niord.proxy.rest.RootArea;
 
 /**
  * Defines the settings used by the Niord Proxy.
@@ -65,19 +67,18 @@ public class Settings {
 
     private String wmsServerUrl;
 
-
     /** Constructor **/
     @PostConstruct
     private void init() {
         // Initialize settings from system properties
 
-        server = System.getProperty("niord-proxy.server", "https://niord.ghananautical.info");
+        server = readProperty("niord-proxy.server", "https://niord.ghananautical.info");
         log.info("server: " + server);
 
         // Accept incomplete SSL certificate chains from the server
         checkInitHttpsConnections(server);
 
-        String[] areaIds = System.getProperty("niord-proxy.areas", "urn:mrn:iho:country:gh|7|-1|7").split(",");
+        String[] areaIds = readProperty("niord-proxy.areas", "urn:mrn:iho:country:gh|7|-1|7").split(",");
         rootAreas = Arrays.stream(areaIds).map(RootArea::new).toArray(RootArea[]::new);
         log.info("AreaIds: " + Arrays.asList(areaIds));
 
@@ -94,13 +95,13 @@ public class Settings {
         }
         log.info("repoType: " + repoType);
 
-        timeZone = System.getProperty("niord-proxy.timeZone", "UTC");
+        timeZone = readProperty("niord-proxy.timeZone", "UTC");
         log.info("timeZone: " + timeZone);
 
-        analyticsTrackingId = System.getProperty("niord-proxy.analyticsTrackingId", "");
+        analyticsTrackingId = readProperty("niord-proxy.analyticsTrackingId", "");
         log.info("analyticsTrackingId: " + analyticsTrackingId);
 
-        languages = System.getProperty("niord-proxy.languages", "en").split(",");
+        languages = readProperty("niord-proxy.languages", "en").split(",");
         log.info("languages: " + Arrays.asList(languages));
 
         try {
@@ -110,10 +111,21 @@ public class Settings {
         }
         log.info("mode: " + executionMode);
 
-        wmsServerUrl = System.getProperty("niord-proxy.wmsServerUrl", "");
+        wmsServerUrl = readProperty("niord-proxy.wmsServerUrl", "");
         log.info("wmsServerUrl: " + wmsServerUrl);
     }
 
+
+    private static String readProperty(String property, String defaultValue) {
+        Properties properties = System.getProperties();
+        if (properties.containsKey(property)) {
+            String val = properties.getProperty(property);
+            if (val.length()>0 && !val.equals("\"\"")) {
+                return val;
+            }
+        }
+        return defaultValue;
+    }
 
     /**
      * For e.g. "*.e-navigation.net", with no intermediate certificates specified, you will get an

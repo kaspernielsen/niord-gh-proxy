@@ -1,9 +1,9 @@
 FROM java:openjdk-8-jdk
 
-ADD niord-proxy-swarm.jar /opt/niord-proxy-swarm.jar
+ADD target/niord-gh-proxy-swarm.jar /opt/niord-proxy-swarm.jar
 
 ENV EXECUTION_MODE development
-ENV NIORD_PROXY_SERVER https://niord.e-navigation.net
+ENV NIORD_PROXY_SERVER ""
 ENV NIORD_PROXY_AREAS ""
 ENV NIORD_REPO_PATH ""
 ENV NIORD_REPO_TYPE ""
@@ -25,3 +25,4 @@ ENTRYPOINT java \
    -Dniord-proxy.analyticsTrackingId=$NIORD_PROXY_TRACKING_ID \
    -Dniord-proxy.wmsServerUrl=$NIORD_PROXY_WMS_URL \
    -jar /opt/niord-proxy-swarm.jar
+
